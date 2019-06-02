@@ -1,0 +1,194 @@
+\documentclass[8pt,letterpaper,boxed]{hmcpset}
+\usepackage[left=0.75cm, right=0.75cm, top=0.75cm, bottom=0.75cm, headheight=0pt,headsep=0pt]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, enumerate, fancyhdr, gensymb, lastpage, mathtools, parskip}
+
+\pagestyle{empty}
+\linespread{1}
+\parindent=0in
+\parskip=0pt
+
+\begin{document}
+\problemlist{Math 045 Differential Equations Reference Sheet}
+
+%------------------------- Classifying ODE's -----------------------
+
+\textbf{Classifying ODE's}
+\begin{itemize}
+    \item Order of an ODE: Highest number of derivatives of dependent variable.
+    \item Autonomous/Non-Autonomous: Independent variable not explicitly in the equation.
+    \item Linear/Non-Linear: Dependent variable and derivatives appear linearly in equation. No products of variables and derivatives occur.
+    \item Driven/Undriven (Only if DE is Linear): Driven (homogeneous, forced): Nonzero term that depends on independent variable or is constant. $f(x) = 0$ is always a solution to an undriven ODE but never to a driven ODE.
+\end{itemize}
+
+%------------------------- Existence and Uniqueness -----------------------
+\textbf{Existence and Uniqueness}
+\begin{enumerate}
+    \item 1st Order Linear ODEs
+    \begin{itemize}
+        \item Given ODE in normal form $y'(t) + p(t)y(t) = q(t)$ and IC $y(t_0 = y_0$: If $p(t)$ and $q(t)$ are continuous functions of $t$ on an interval $(a, b)$ that contains $t_0$, then a solution to IVP exists and is unique for all $t \in (a, b)$.
+    \end{itemize}
+    \item 1st Order ODEs
+    \begin{itemize}
+        \item Given ODE $y' = f(t, y)$ and IC $y(t_0) = y_0$: If $f(t, y)$ and $\frac{\delta f}{\delta y} (t, y)$ are continuous in a rectangle around $(t_0, y_0)$, then a solution to IVP exists and is unique in some interval $(t_0-h, t_0+h)$ for some unknown $h>0$.
+    \end{itemize}
+    \item 2nd Order Linear ODEs
+    \begin{itemize}
+        \item Given ODE in normal form $y''(t) + p_1(t)y'(t) + p_2(t)y(t) = q(t)$ and ICs $y(t_0) = y_0$, $y'(t_0) = y'_0$: If $f(t, y)$ and $\frac{\delta f}{\delta y} (t, y)$ are continuous in a rectangle around $(t_0, y_0)$, then a solution to IVP exists and is unique in some interval $(t_0-h, t_0+h)$.
+    \end{itemize}
+\end{enumerate}
+
+%------------------------- Euler's Identity -----------------------
+\textbf{Euler's Identity}
+$e^{i\theta} = cos\theta + i sin\theta$
+
+%------------------------- Euler's Method -----------------------
+\textbf{Euler's Method}
+Given $y' = f(t,y)$ and $y(t_0) = y_0$: $y(t+\Delta t) \approx y(t) + \Delta t f(t,y)$:
+    \begin{itemize}
+        \item At $t_0$: $v_0 = y(t_0)$.
+        \item At $t_1 = t_0 + \Delta t$: $v_1 = v_0 + \Delta t f(t_0, v_0)$.
+        \item At $t_n = t_0 + n\Delta t$: $v_n = v_{n-1} + \Delta t f(t_{n-1}, v_{n-1})$.
+    \end{itemize}
+
+%------------------------- Method of Separation -----------------------
+
+\textbf{Method of Separation of Variables}
+\begin{enumerate}
+    \item Given $\frac{dy}{dt} = G(y)H(t)$, rewrite as $\frac{1}{G(y)}dy = H(t)dt$.
+    \item Take the integral of both sides to get $\int \frac{1}{G(y)}dy = \int H(t)dt$.
+\end{enumerate}
+
+%------------------------- Method of Integrating Factors -----------------------
+
+\textbf{Method of Integrating Factors}
+\begin{enumerate}
+    \item Given ODE, put in normal form $y'(t) + p(t)y(t) = q(t)$.
+    \item Multiply ODE by integrating factor $\mu (t) = e^{\int p(t)dt}$.
+    \item ODE becomes $\frac{d}{dt} [\mu (t) y(t)] = q(t)$, so take the integral of both sides to get $\mu (t) y(t) = \int q(t)$. Divide both sides by $\mu (t)$.
+\end{enumerate}
+
+%------------------------- Solving 2nd Order Constant Coefficient Homogeneous DEs -----------------------
+\textbf{Solving 2nd Order Constant Coefficient Homogeneous DEs}
+Given $a y''(t) + b y'(t) + c y(t) = 0$, solve characteristic polynomial $a\lambda ^2+b\lambda +c = 0$ for roots $\lambda _1$ and $\lambda _2$. If no roots are repeated, then by superposition, $y(t) = C_1e^{\lambda_1 t}+C_2e^{\lambda_2 t}$. If roots are repeated, then $y(t) = C_1e^{\lambda_1 t}+C_2te^{\lambda_1 t}$.
+
+%------------------------- Variation of Parameters -----------------------
+\textbf{Variation of Parameters}
+\begin{enumerate}
+    \item Find the general solution to the homogeneous version of the ODE, where $f(t) = 0$.
+    \item Suppose the homogeneous solution has form $y(t) = u_1(t)y_1(t)+u_2(t)y_2(t)$. Then, compute the Wronskian with the form $W = \det {\begin{vmatrix}y_1&y_2\\y'_1&y'_2 \end{vmatrix}}$. If $W(y_1, y_2) \neq 0$, then $u_1 = -\int \frac{y_2f}{W} dt$ and $u_2 = \int \frac{y_1f}{W} dt$.
+\end{enumerate}
+
+%------------------------- Reduction of Order -----------------------
+\textbf{Reduction of Order}
+\begin{itemize}
+    \item From Abel's Theorem, we know $W[y_1, y_2] = y_1y'_2-y_2y'_1 = Ce^{-\int p(t) dt}$. \textbf{or}
+    \item Ansatz $y_2 = y(t)y_1$; plug into ODE and solve for u(t). Set $w = u'$ and solve ODE before plugging $u'$ back into $w$.
+\end{itemize}
+
+%------------------------- Abel's Theorem -----------------------
+\textbf{Abel's Theorem}
+If p, q are continuous functions an open interval \textit{I}, and $y_1, y_2$ are solutions to $y'' + py' + qy = 0$, then for some constant $C$, $W[y_1, y_2] = Ce^{-\int p(t) dt}$. For $y_1, y_2$ solutions on $I$ for $y''+py'+qy=0$, see that either $W \equiv 0$ (always 0) or $W \neq 0$ for all $t \in I$ (never 0).
+
+%------------------------- Linear Independence of Functions -----------------------
+\textbf{Linear Independence of Functions}
+\begin{itemize}
+    \item We say {$f_1(t),...,f_k(t)$} is linearly independent set on an open interval $(a, b)$ if the only solution to $c_1f_1(t) + ... + c_kf_k(t) = 0$ for all $t \in (a, b)$ is with \textit{all} $x_i = 0$.
+    \item Two functions $\{f, g\}$ is a linearly independent set on an open interval $(a, b)$ if $W[f, g] \neq 0$ for \textit{some} $t \in (a, b)$.
+    \item A pair of functions $\{y_1, y_2\}$ solving $y'' + py' + qy = 0$ form a fundamental solution set on an open interval $I$ if $W[y_1, y_2] \neq 0$ for \textit{some} $t \in I$.
+\end{itemize}
+
+%------------------------- Method of Undetermined Coefficients -----------------------
+\textbf{Method of Undetermined Coefficients}
+\begin{enumerate}
+    \item Find the general solution $y_h$ to the homogeneous version of the ODE, where $f(t) = 0$.
+    \item Guess a solution $y_p$ to the forced ODE; plug into ODE to verify.
+If any term in the first guess is also a solution to the corresponding homogeneous equation, multiply the whole guess by t. If any term in this second guess is still a solution to the homogeneous equation, multiply by t again (i.e. multiply the first guess by $t^2$).
+    \item The general solution to the forced ODE is $y(t) = y_h + y_p$.
+\end{enumerate}
+
+\begin{center}
+    \begin{tabular}{ || c | c || } 
+         \hline \hline
+         $f(t)$ & $y_p(t)$ First Guess \\ 
+         \hline \hline
+         $ke^{rt}$ & $Ae^{rt}$ \\ 
+         \hline
+         $kcos(\omega t)$ or $ksin(\omega t) $ & $Asin(\omega t)+Bcos(\omega t)$ \\ 
+         \hline
+         $P_n(t)$ & $A_nt^n + A_{n−1}t^{n−1} + ... + A_1t + A_0$ \\
+         \hline
+         $P_n(t)e^{rt}$ & $(A_nt^n + A_{n−1}t^{n−1} + ... + A_1t + A_0)e^{rt}$ \\
+         \hline
+         $P_n(t)e^{rt}sin(\omega t)$ or $P_n(t)e^{rt}cos(\omega t)$ & $(A_nt^n + A_{n−1}t^{n−1} + ... + A_1t + A_0)e^{rt}sin(\omega t)$ \\
+         & $+ (B_nt^n + B_{n−1}t^{n−1} + ... + B_1t + B_0)e^{rt}cos(\omega t)$ \\
+         \hline \hline
+    \end{tabular}
+\end{center}
+%------------------------- Springs -----------------------
+\textbf{Springs}
+\begin{itemize}
+    \item For a mass spring, we have equation $mx"+cx'+kx=kX(t)$ where $X(t)$ refers to the forcing term. Can be $X(t)=X_0 cos(\omega _f t)$ where $\omega _f$ is the forcing frequency.
+    \item For an undamped, unforced mass spring of equation $mx"+kx=0$ or $x"+\frac{k}{m}x=0$ where $\frac{k}{m}=\omega^2$ and $\omega_n$ is the natural frequency, the solution is $x(t)=Asin(\omega t)+Bcos(\omega t)=\sqrt{A^2+B^2}sin(\omega t+tan^{-1}(\frac{A}{B}))$.
+    \item For an undamped, forced mass spring of equation $x"+\omega^2x=\omega^2X_0cos(\omega_ft)$, the general solution is $x(t)=Asin(\omega t)+Bcos(\omega t)+\frac{\omega^2X_0}{\omega^2-\omega_f^2}cos(\omega_f t)$. For IC's x(0)=0 and x'(0)=0, then the solution is $x(t)=\frac{\omega^2X_0}{\omega^2-\omega_f^2}[cos(\omega_f t)-cos(\omega t)]$.
+    \item For a damped free oscillator of equation $m\Ddot{x}+c\Dot{x}+kx=0$, its natural frequency is $\omega=\sqrt{\frac{k}{m}}$ when undamped. Solving its characteristic equation yields roots $\lambda_{1, 2}=\frac{-c\pm\sqrt{c^2-4mk}}{2m}$, where $c^2-4mk$ is the discriminant $\Delta$.
+        \begin{center}
+            \begin{tabular}{ | c | c | c | c | } 
+                 \hline
+                 $\zeta > 1$ & $\Delta > 0$ & distinct roots $\lambda_1,\lambda_2$ & "overdamped" $x_h(t)=C_1e^{\lambda_1 t}+C_2e^{\lambda_2 t}$ \\
+                 \hline
+                 $\zeta = 1$ & $\Delta = 0$ & repeated roots $\lambda$ & "critically damped" $x_h(t)=C_1e^{\lambda t}+C_2te^{\lambda t}$ \\
+                 \hline
+                 $0 < \zeta < 1$ & $\Delta < 0$ & complex roots $\lambda_1,\lambda_2 = \sigma \pm i \omega_d$ & "underdamped"  $x_h(t)=e^{\sigma t}[Asin(\omega_d t)+Bcos(\omega_d t)]$ \\
+                 \hline
+                 $\zeta = 0$ & $\Delta < 0$ & purely imaginary $\lambda_1,\lambda_2 = \pm i \omega_d$ & "undamped" $x_h(t)=Asin(\omega_d t)+Bcos(\omega_d t)$ \\
+                 \hline
+            \end{tabular}
+            \newline
+            $\omega_d$ is the damping frequency, where if $\lambda_{1, 2} = -\zeta\omega\pm i\sqrt{1-\zeta}\omega$, then $\omega_d=\sqrt{1-\zeta}\omega$. We can rewrite $\Ddot{x}+\frac{c}{m}\Dot{x}+\frac{k}{m}x=0$ as $\Ddot{x}+2\zeta\omega\Dot{x}+\omega^2x=0$ if we let $\zeta=\frac{c}{2\sqrt{mk}}$. 
+        \end{center}
+    \item For a damped forced oscillator, see method of undetermined coefficients.
+\end{itemize}
+
+%------------------------- Systems of ODEs -----------------------
+\textbf{Systems of ODEs}
+To rewrite higher order ODEs as a system of first order ODEs:
+\begin{enumerate}
+    \item Rewrite the ODE so that the highest order term is isolated.
+    \item Set a function equal to the next highest order term.
+    \item Rewrite the ODE to have all the terms written in terms of the new function.
+    \item Rinse and repeat.
+    \item If and only if the original ODE is linear, rewrite the system as a matrix.
+\end{enumerate}
+
+%------------------------- Systems of ODEs Example -----------------------
+\textbf{Systems of ODEs Example 1}
+\newline
+$y^2y''' + 7y = 0$ \\
+Rewrite as $y''' =-7y^{-1}$. \\
+Let $v=y'$, so $v"=-7y^{-1}$. \\
+Let $u=v'$, so $u'=-7y^{-1}$. \\
+Then, the system of equations is: $\{y'=v, v'=u, u'=-7y^{-1}\}$.
+
+%------------------------- Systems of ODEs Example -----------------------
+\textbf{Systems of ODEs Example 2}
+\newline
+$4y"+3y'+2y=0$ \\
+Rewrite as $y"=-\frac{3}{4}y'-\frac{1}{2}y$. \\
+Let $u=y'$, so $u'=-\frac{3}{4}u-\frac{1}{2}y$. \\
+Then, the system of equations is: $\{y'=u, u'=-\frac{3}{4}u-\frac{1}{2}y\}$. \\
+In matrix form: \\
+$\begin{bmatrix}
+y' \\
+u' \\
+\end{bmatrix}$
+=
+$\begin{bmatrix}
+0 & 1 \\
+-\frac{1}{2} & -\frac{3}{4} \\
+\end{bmatrix}$
+$\begin{bmatrix}
+y \\
+u \\
+\end{bmatrix}$.
+
+\end{document}

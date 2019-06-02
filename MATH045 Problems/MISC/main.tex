@@ -1,0 +1,40 @@
+ \documentclass[11pt,letterpaper,boxed]{hmcpset}
+
+% include this package to customize page layout of document (e.g. to adjust margins)
+\usepackage[margin=0.9in]{geometry}
+\usepackage{ulem}
+
+% set numbering style for enumerated lists to be of form (a), (b), (c), etc.
+\renewcommand{\labelenumi}{{\bf (\alph{enumi})}}
+
+
+%for drawing graphs
+\usepackage{tikz}
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep 
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Extra packages
+\usepackage{amsfonts, amsmath, amssymb, enumerate, esvect, fancyhdr, gensymb, graphicx, lastpage, mathtools, mathrsfs, parskip}
+%%
+
+% Bolded vector
+\renewcommand{\v}[1]{\textbf{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}[1]{\mathbb{R}^#1}
+
+% info for header block in upper right hand corner
+\name{Kip Lim}
+\class{Section 7}
+\assignment{Box \#521}
+\duedate{03 May 2019}
+
+
+\begin{document}
+%% Used to open tex file
+\input{hw7.tex}
+\end{document}
